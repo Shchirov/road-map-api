@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package stream;
+
+option go_package = "road-map-api/api";
+
+message StreamResponse {
+  int64 id = 1;
+  string code = 2;
+  string description = 3;
+
+}

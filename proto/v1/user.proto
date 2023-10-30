@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "road-map-api/api";
+
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "v1/post.proto";
+import "v1/stream.proto";
+
+// The greeting service definition.
+service User {
+  rpc CreateUser (CreateUserRequest) returns (UserResponse) {
+    option (google.api.http) = {
+      post: "/v1/user"
+      body: "*"
+    };
+  }
+  rpc GetUsers (UsersFilterRequest) returns (UserListResponse) {
+    option (google.api.http) = {
+      get: "/v1/user"
+    };
+  }
+  rpc GetUsersById(GetUserByIdRequest) returns (UserResponse) {
+    option (google.api.http) = {
+      get: "/v1/user/{id}"
+    };
+  }
+  rpc UpdateUser(UpdateUserRequest) returns (UserResponse) {
+    option (google.api.http) = {
+      patch: "/v1/user/{id}"
+      body: "*"
+    };
+  }
+}
+
+message CreateUserRequest {
+  string firstName = 1;
+  string secondName = 2;
+  string surname = 3;
+  bool isActive = 4;
+  string avatar = 5;
+  int32 postId = 6;
+  int32 streamId = 7;
+}
+
+message GetUserByIdRequest {
+  string id = 1;
+}
+
+message UsersFilterRequest{
+  optional string id = 1;
+  optional string postId = 2;
+  optional string streamId = 3;
+}
+
+message UpdateUserRequest{
+  string firstName = 1;
+  string secondName = 2;
+  string surname = 3;
+  bool isActive = 4;
+  string avatar = 5;
+  int32 postId = 6;
+  int32 streamId = 7;
+  string id = 8;
+}
+
+message UserResponse {
+  string id = 1;
+  string firstName = 2;
+  string secondName = 3;
+  string surname = 4;
+  bool isActive = 5;
+  string avatar = 6;
+  post.PostResponse post = 7;
+  stream.StreamResponse stream = 8;
+}
+
+message UserListResponse {
+  repeated UserResponse users = 1;
+}

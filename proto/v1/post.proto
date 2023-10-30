@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package post;
+
+option go_package = "road-map-api/api";
+
+message PostResponse {
+  int64 id = 1;
+  string code = 2;
+  string description = 3;
+
+}
