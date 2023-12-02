@@ -7,30 +7,26 @@ option go_package = "road-map-api/api";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "v1/post.proto";
-import "v1/stream.proto";
+import "user-service/post.proto";
+import "user-service/stream.proto";
 
 // The greeting service definition.
 service User {
   rpc CreateUser (CreateUserRequest) returns (UserResponse) {
     option (google.api.http) = {
-      post: "/v1/user"
+      post: "/v1/user-service"
       body: "*"
     };
   }
-  rpc GetUsers (UsersFilterRequest) returns (UserListResponse) {
-    option (google.api.http) = {
-      get: "/v1/user"
-    };
-  }
+
   rpc GetUsersById(GetUserByIdRequest) returns (UserResponse) {
     option (google.api.http) = {
-      get: "/v1/user/{id}"
+      get: "/v1/user-service/{id}"
     };
   }
   rpc UpdateUser(UpdateUserRequest) returns (UserResponse) {
     option (google.api.http) = {
-      patch: "/v1/user/{id}"
+      patch: "/v1/user-service/{id}"
       body: "*"
     };
   }
@@ -42,19 +38,14 @@ message CreateUserRequest {
   string surname = 3;
   bool isActive = 4;
   string avatar = 5;
-  int32 postId = 6;
-  int32 streamId = 7;
+  int64 postId = 6;
+  int64 streamId = 7;
 }
 
 message GetUserByIdRequest {
   string id = 1;
 }
 
-message UsersFilterRequest{
-  optional string id = 1;
-  optional string postId = 2;
-  optional string streamId = 3;
-}
 
 message UpdateUserRequest{
   string firstName = 1;
@@ -62,8 +53,8 @@ message UpdateUserRequest{
   string surname = 3;
   bool isActive = 4;
   string avatar = 5;
-  int32 postId = 6;
-  int32 streamId = 7;
+  int64 postId = 6;
+  int64 streamId = 7;
   string id = 8;
 }
 
