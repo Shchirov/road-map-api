@@ -4,7 +4,7 @@
 // 	protoc        v4.24.4
 // source: user-service/user.proto
 
-package api
+package userv1
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -13,6 +13,8 @@ import (
 	_ "google.golang.org/protobuf/types/known/emptypb"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
+	road_map_api_post_v1 "road-map-api.post.v1"
+	road_map_api_stream_v1 "road-map-api.stream.v1"
 	sync "sync"
 )
 
@@ -273,14 +275,14 @@ type UserResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         string          `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	FirstName  string          `protobuf:"bytes,2,opt,name=firstName,proto3" json:"firstName,omitempty"`
-	SecondName string          `protobuf:"bytes,3,opt,name=secondName,proto3" json:"secondName,omitempty"`
-	Surname    string          `protobuf:"bytes,4,opt,name=surname,proto3" json:"surname,omitempty"`
-	IsActive   bool            `protobuf:"varint,5,opt,name=isActive,proto3" json:"isActive,omitempty"`
-	Avatar     string          `protobuf:"bytes,6,opt,name=avatar,proto3" json:"avatar,omitempty"`
-	Post       *PostResponse   `protobuf:"bytes,7,opt,name=post,proto3" json:"post,omitempty"`
-	Stream     *StreamResponse `protobuf:"bytes,8,opt,name=stream,proto3" json:"stream,omitempty"`
+	Id         string                                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	FirstName  string                                 `protobuf:"bytes,2,opt,name=firstName,proto3" json:"firstName,omitempty"`
+	SecondName string                                 `protobuf:"bytes,3,opt,name=secondName,proto3" json:"secondName,omitempty"`
+	Surname    string                                 `protobuf:"bytes,4,opt,name=surname,proto3" json:"surname,omitempty"`
+	IsActive   bool                                   `protobuf:"varint,5,opt,name=isActive,proto3" json:"isActive,omitempty"`
+	Avatar     string                                 `protobuf:"bytes,6,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	Post       *road_map_api_post_v1.PostResponse     `protobuf:"bytes,7,opt,name=post,proto3" json:"post,omitempty"`
+	Stream     *road_map_api_stream_v1.StreamResponse `protobuf:"bytes,8,opt,name=stream,proto3" json:"stream,omitempty"`
 }
 
 func (x *UserResponse) Reset() {
@@ -357,14 +359,14 @@ func (x *UserResponse) GetAvatar() string {
 	return ""
 }
 
-func (x *UserResponse) GetPost() *PostResponse {
+func (x *UserResponse) GetPost() *road_map_api_post_v1.PostResponse {
 	if x != nil {
 		return x.Post
 	}
 	return nil
 }
 
-func (x *UserResponse) GetStream() *StreamResponse {
+func (x *UserResponse) GetStream() *road_map_api_stream_v1.StreamResponse {
 	if x != nil {
 		return x.Stream
 	}
@@ -500,8 +502,9 @@ var file_user_service_user_proto_rawDesc = []byte{
 	0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x20, 0x82,
 	0xd3, 0xe4, 0x93, 0x02, 0x1a, 0x3a, 0x01, 0x2a, 0x32, 0x15, 0x2f, 0x76, 0x31, 0x2f, 0x75, 0x73,
 	0x65, 0x72, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x7b, 0x69, 0x64, 0x7d, 0x42,
-	0x12, 0x5a, 0x10, 0x72, 0x6f, 0x61, 0x64, 0x2d, 0x6d, 0x61, 0x70, 0x2d, 0x61, 0x70, 0x69, 0x2f,
-	0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x1d, 0x5a, 0x1b, 0x72, 0x6f, 0x61, 0x64, 0x2d, 0x6d, 0x61, 0x70, 0x2d, 0x61, 0x70, 0x69, 0x2e,
+	0x75, 0x73, 0x65, 0x72, 0x2e, 0x76, 0x31, 0x3b, 0x75, 0x73, 0x65, 0x72, 0x76, 0x31, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -518,13 +521,13 @@ func file_user_service_user_proto_rawDescGZIP() []byte {
 
 var file_user_service_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_user_service_user_proto_goTypes = []interface{}{
-	(*CreateUserRequest)(nil),  // 0: user.CreateUserRequest
-	(*GetUserByIdRequest)(nil), // 1: user.GetUserByIdRequest
-	(*UpdateUserRequest)(nil),  // 2: user.UpdateUserRequest
-	(*UserResponse)(nil),       // 3: user.UserResponse
-	(*UserListResponse)(nil),   // 4: user.UserListResponse
-	(*PostResponse)(nil),       // 5: post.PostResponse
-	(*StreamResponse)(nil),     // 6: stream.StreamResponse
+	(*CreateUserRequest)(nil),                     // 0: user.CreateUserRequest
+	(*GetUserByIdRequest)(nil),                    // 1: user.GetUserByIdRequest
+	(*UpdateUserRequest)(nil),                     // 2: user.UpdateUserRequest
+	(*UserResponse)(nil),                          // 3: user.UserResponse
+	(*UserListResponse)(nil),                      // 4: user.UserListResponse
+	(*road_map_api_post_v1.PostResponse)(nil),     // 5: post.PostResponse
+	(*road_map_api_stream_v1.StreamResponse)(nil), // 6: stream.StreamResponse
 }
 var file_user_service_user_proto_depIdxs = []int32{
 	5, // 0: user.UserResponse.post:type_name -> post.PostResponse
@@ -548,8 +551,6 @@ func file_user_service_user_proto_init() {
 	if File_user_service_user_proto != nil {
 		return
 	}
-	file_user_service_post_proto_init()
-	file_user_service_stream_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_user_service_user_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreateUserRequest); i {

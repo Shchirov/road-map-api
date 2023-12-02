@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package stream;
 
-option go_package = "road-map-api/api";
+option go_package = "road-map-api.stream.v1;streamv1";
 
 message StreamResponse {
   int64 id = 1;

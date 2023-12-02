@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user;
 
-option go_package = "road-map-api/api";
+option go_package = "road-map-api.user.v1;userv1";
 
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";

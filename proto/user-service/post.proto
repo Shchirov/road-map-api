@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package post;
 
-option go_package = "road-map-api/api";
+option go_package = "road-map-api.post.v1;postv1";
 
 message PostResponse {
   int64 id = 1;
