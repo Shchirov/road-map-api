@@ -7,8 +7,6 @@ option go_package = "road-map-api.user.v1;userv1";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "post/post.proto";
-import "stream/stream.proto";
 
 // The greeting service definition.
 service User {
@@ -65,10 +63,22 @@ message UserResponse {
   string surname = 4;
   bool isActive = 5;
   string avatar = 6;
-  post.PostResponse post = 7;
-  stream.StreamResponse stream = 8;
+  PostResponse post = 7;
+  StreamResponse stream = 8;
 }
 
+message PostResponse {
+  int64 id = 1;
+  string code = 2;
+  string description = 3;
+
+}
+message StreamResponse {
+  int64 id = 1;
+  string code = 2;
+  string description = 3;
+
+}
 message UserListResponse {
   repeated UserResponse users = 1;
 }
