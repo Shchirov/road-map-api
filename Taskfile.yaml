@@ -1,15 +1,17 @@
 version: "3"
-
 tasks:
   generate:
     aliases:
       - gen
     desc: "Generate code from proto files"
+    vars:
+      PROTO_PATH: user post stream
     cmds:
-      - protoc -I proto proto/user-service/*.proto 
-       --go_out=./gen/go/
-       --go_opt=paths=source_relative
-       --go-grpc_out=./gen/go/
-       --go-grpc_opt=paths=source_relative
-       --grpc-gateway_out=./gen/go/
-       --grpc-gateway_opt paths=source_relative
+      - for: ['user', 'post', 'stream']
+        cmd: protoc -I proto proto/{{ .ITEM }}/*.proto
+          --go_out=./gen/go/
+          --go_opt=paths=source_relative
+          --go-grpc_out=./gen/go/
+          --go-grpc_opt=paths=source_relative
+          --grpc-gateway_out=./gen/go/
+          --grpc-gateway_opt paths=source_relative

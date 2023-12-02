@@ -7,26 +7,26 @@ option go_package = "road-map-api.user.v1;userv1";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "user-service/post.proto";
-import "user-service/stream.proto";
+import "post/post.proto";
+import "stream/stream.proto";
 
 // The greeting service definition.
 service User {
   rpc CreateUser (CreateUserRequest) returns (UserResponse) {
     option (google.api.http) = {
-      post: "/v1/user-service"
+      post: "/v1/user"
       body: "*"
     };
   }
 
   rpc GetUsersById(GetUserByIdRequest) returns (UserResponse) {
     option (google.api.http) = {
-      get: "/v1/user-service/{id}"
+      get: "/v1/user/{id}"
     };
   }
   rpc UpdateUser(UpdateUserRequest) returns (UserResponse) {
     option (google.api.http) = {
-      patch: "/v1/user-service/{id}"
+      patch: "/v1/user/{id}"
       body: "*"
     };
   }
